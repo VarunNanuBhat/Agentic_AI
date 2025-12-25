@@ -8,7 +8,7 @@ messages = [
     SystemMessage(content = "Explain in simple terms"),
     HumanMessage(content = "Which continent does India belong too"),  
     AIMessage(content = "India is part of the continent called Asia."),
-    HumanMessage(content = "How many states does it have")
+    HumanMessage(content = "How many states does it has")
 ]
 
 response = model.invoke(messages)
