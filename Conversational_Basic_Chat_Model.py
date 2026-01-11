@@ -6,10 +6,16 @@ model = ChatOllama(model = "llama3")
 
 messages = [
     SystemMessage(content = "Explain in simple terms"),
-    HumanMessage(content = "Which continent does India belong too"),  
-    AIMessage(content = "India is part of the continent called Asia."),
-    HumanMessage(content = "How many states does it have")
 ]
 
-response = model.invoke(messages)
-print(response.content)
+while True: 
+    user_prompt = input("User prompt: ")
+    if user_prompt == "exit":
+        break
+    messages.append(HumanMessage(content = user_prompt))
+    response = model.invoke(messages)
+    messages.append(AIMessage(content = response.content))
+    print("Chatbot response: ",response.content)
+    print("Chat history: ")
+    print(messages)
+    print("Type 'exit' to stop")
