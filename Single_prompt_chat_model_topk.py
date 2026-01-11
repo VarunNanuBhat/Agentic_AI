@@ -4,7 +4,7 @@ from langchain_community.chat_models import ChatOllama
 model = ChatOllama(model = "llama3")
 
 # Invoke the model with a prompt
-response = model.invoke("Explain generative AI in one line", temperature = 0.7)
+response = model.invoke("Explain generative AI in one line", temperature = 0.7, top_k = 50)
 
 # Print the result
 print("Complete response: ", response)
