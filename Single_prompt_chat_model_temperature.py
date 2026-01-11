@@ -4,7 +4,7 @@ from langchain_community.chat_models import ChatOllama
 model = ChatOllama(model = "llama3")
 
 # Invoke the model with a prompt
-response = model.invoke("Which continent does India belong too")
+response = model.invoke("Explain generative AI", temperature = 0.1)
 
 # Print the result
 print("Complete response: ", response)
