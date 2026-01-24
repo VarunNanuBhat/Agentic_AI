@@ -2,12 +2,15 @@ from langchain_community.chat_models import ChatOllama
 from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 import tiktoken
 
+# Create chat ollama model instance
 model = ChatOllama(model = "llama3")
 
+# Create list to store messages
 messages = [
     SystemMessage(content = "Explain in simple terms")
 ]
 
+# declare token encoding format
 token_encode_format = tiktoken.get_encoding("cl100k_base")
 
 while True: 
@@ -17,10 +20,11 @@ while True:
     messages.append(HumanMessage(content = user_prompt))
     response = model.invoke(messages)
     messages.append(AIMessage(content = response.content))
+    print("Chatbot response: ",response.content)
     print("Chat history: ")
     print(messages)
     all_messages = " ".join([msg.content for msg in messages])
-    print(all_messages)
+    print("All characters: ", all_messages)
     token_ids = token_encode_format.encode(all_messages)
     print("Tokens in above set of messages: ", token_ids)
     print("Token ID : Token text mapping: ")
