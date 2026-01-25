@@ -1,21 +1,22 @@
 from langchain_community.chat_models import ChatOllama
 from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 import tiktoken
 
-# Create chat ollama model instance
+# Create Ollama chat model instance
 model = ChatOllama(model = "llama3")
 
-# Initialize conversationBufferMemory
-memory = ConversationBufferMemory(
-    memory_key = "history",             # stores the conversation
-    return_messages = True                   # keeps messages as HumanMessage/AIMessage objects
+# Initialize Sliding window memory to keep last 4 messages
+memory = ConversationBufferWindowMemory(
+    k = 4, 
+    memory_key = "history",
+    return_messages = True
 )
 
-# Create ConversationChain with memory
-conversation = ConversationChain (
+# Create conversation chain with sliding window memory
+conversation = ConversationChain(
     llm = model, 
-    memory = memory
+    memory = memory 
 )
 
 # Initialize token encoding format
@@ -40,5 +41,3 @@ while True:
         text = token_encode_format.decode([token])
         print(token, ":", text)
     print("Total tokens consumed:", total_tokens)
-
-
