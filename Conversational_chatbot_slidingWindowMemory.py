@@ -35,6 +35,8 @@ while True:
     token_ids = token_encode_format.encode(all_messages)
     total_tokens = len(token_ids)
     print("All characters in chat history:", all_messages)
+    actual_messages = memory.load_memory_variables({})["history"]
+    print("Actual messages sent to model: ", actual_messages)
     print("Tokens in above messages:", token_ids)
     print("Token ID : Token text mapping:")
     for token in token_ids:
