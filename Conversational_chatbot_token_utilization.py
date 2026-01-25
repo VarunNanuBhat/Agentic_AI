@@ -10,7 +10,7 @@ messages = [
     SystemMessage(content = "Explain in simple terms")
 ]
 
-# declare token encoding format
+# Initialize token encoding format
 token_encode_format = tiktoken.get_encoding("cl100k_base")
 
 while True: 
